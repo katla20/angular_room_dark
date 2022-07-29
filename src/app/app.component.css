@@ -11,10 +11,20 @@ p {
 }
 
 .table-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.detalils-grid {
+.details-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.details-items-grid {
+  margin: auto;
+  text-align: center;
+  list-style: none;
+}
 .cell-grid {
   padding: 0.5em;
 }
