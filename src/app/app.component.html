@@ -1,60 +1,64 @@
-<div>
+<div class="container">
   <h3>habitaciones en greenchain</h3>
-  <ul>
-    <li>
-      <div>dimension de la habitacion</div>
-      <div>x[5]y[4]</div>
-    </li>
-    <li>
-      <div>bombillos utilizados</div>
-      <div>8</div>
-    </li>
-  </ul>
-  <table class="grid">
-    <tbody>
-      <tr class="tr-grid">
-        <td class="td-grid wall" data-feature="wall">1</td>
-        <td class="td-grid hallway" data-feature="hallway">0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-    </tbody>
-  </table>
-  <div>
+  <div class="details_grid">
+    <ul>
+      <li>
+        <div>dimension de la habitacion</div>
+        <div>x[5]y[4]</div>
+      </li>
+      <li>
+        <div>bombillos utilizados</div>
+        <div>8</div>
+      </li>
+    </ul>
+  </div>
+  <div class="table-grid">
+    <table class="" border="1">
+      <tbody>
+        <tr class="tr-grid">
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+        </tr>
+        <tr>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+        </tr>
+        <tr>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+        </tr>
+        <tr>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+        </tr>
+        <tr>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+          <td class="cell-grid wall" data-feature="wall">1</td>
+          <td class="cell-grid hallway" data-feature="hallway">0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="group-buttons">
     <button>habitacion inicial</button>
     <button>llevame a otra habitacion</button>
     <button>cargar habitacion</button>

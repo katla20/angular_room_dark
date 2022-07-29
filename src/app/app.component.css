@@ -2,11 +2,33 @@ p {
   font-family: Lato;
 }
 
-.grid {
+.container {
+}
+.group-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.table-grid {
+}
+.detalils-grid {
+}
+
+.cell-grid {
+  padding: 0.5em;
+}
 .wall {
+  background-color: rgb(30, 211, 157);
+  background: gray;
+  background-image: repeating-linear-gradient(
+    30deg,
+    hsla(0, 0%, 100%, 0.1),
+    hsla(0, 0%, 100%, 0.1) 15px,
+    transparent 0,
+    transparent 30px
+  );
 }
-
 .hallway {
+  background-color: greenyellow;
 }
