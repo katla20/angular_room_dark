@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-
+import { GridComponent } from './grid/grid.component';
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import { SegmentComponent } from './segment.component';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { HelloComponent } from './hello.component';
     HttpClientModule,
     AngularSvgIconModule.forRoot(),
   ],
-  declarations: [AppComponent, HelloComponent],
+  declarations: [AppComponent, SegmentComponent, GridComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
