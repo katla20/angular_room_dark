@@ -7,9 +7,12 @@ import { cellState } from './interfaces/data.interface';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
-  dimension = 'x[5],y[7]';
-  bulbs = '6';
+  public name = 'Angular ' + VERSION.major;
+  public dimension = 'x[5],y[7]';
+  public bulbs = '6';
+  private selectedFile;
+  public readyUpload: boolean = true;
+
   public map_grid: Array<Array<cellState>> = [
     // cellState
     // bulb (true o false)
@@ -47,5 +50,17 @@ export class AppComponent {
   }
   randomGrid() {
     console.log('test event randomGrid');
+  }
+
+  loadTxt(data: Array<Array<0 | 1>>) {
+    // this.loadMatrix(data);
+    // this.testMatrix.testPatterns(this.tempMatrixs);
+    // this.showOriginalMatrix()
+  }
+
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+    const fileReader = new FileReader();
+      fileReader.readAsText(this.selectedFile, "UTF-8");
   }
 }
