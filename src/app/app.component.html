@@ -102,8 +102,22 @@
         <div class="group-buttons">
           <button class="btn btn-success">habitacion inicial</button>
           <button class="btn btn-success">llevame a otra habitacion</button>
-          <button class="btn btn-success">cargar habitacion</button>
-          <button class="btn btn-success">iluminar</button>
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="fileInput.click()"
+          >
+            <span>cargar habitacion</span>
+            <input
+              #fileInput
+              type="file"
+              (change)="onFileInput($event)"
+              style="display:none;"
+            />
+          </button>
+          <button class="btn btn-success" (click)="ligthGrid()">
+            iluminar
+          </button>
         </div>
       </li>
       <li>
@@ -111,11 +125,11 @@
           <ul class="details-items-grid">
             <li>
               <div>Dimension de la habitacion</div>
-              <div>x[5]y[4]</div>
+              <div>{{ dimension }}</div>
             </li>
             <li>
               <div>Bombillos utilizados</div>
-              <div>8</div>
+              <div>{{ bulbs }}</div>
             </li>
           </ul>
         </div>

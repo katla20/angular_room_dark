@@ -8,6 +8,8 @@ import { cellState } from './interfaces/data.interface';
 })
 export class AppComponent {
   name = 'Angular ' + VERSION.major;
+  dimension = 'x[5],y[7]';
+  bulbs = '6';
   public map_grid: Array<Array<cellState>> = [
     // cellState
     // bulb (true o false)
@@ -33,4 +35,9 @@ export class AppComponent {
     console.log('holaaa');
     //debugger
   }
+  onFileInput($event) {
+    console.log('click');
+  }
+
+  ligthGrid() {}
 }

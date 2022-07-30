@@ -21,8 +21,9 @@ button {
 }
 .details-grid {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
+  background-color: springgreen;
 }
 .details-items-grid {
   margin: auto;
