@@ -100,14 +100,18 @@
       </li>
       <li>
         <div class="group-buttons">
-          <button class="btn btn-success">habitacion inicial</button>
-          <button class="btn btn-success">llevame a otra habitacion</button>
+          <button class="btn btn-success" (click)="initGrid()">
+            init Grid
+          </button>
+          <button class="btn btn-success" (click)="randomGrid()">
+            random Grid
+          </button>
           <button
             class="btn btn-success"
             type="button"
             (click)="fileInput.click()"
           >
-            <span>cargar habitacion</span>
+            <span>personal grid</span>
             <input
               #fileInput
               type="file"
@@ -115,9 +119,7 @@
               style="display:none;"
             />
           </button>
-          <button class="btn btn-success" (click)="ligthGrid()">
-            iluminar
-          </button>
+          <button class="btn btn-success" (click)="ligthGrid()">ligth</button>
         </div>
       </li>
       <li>

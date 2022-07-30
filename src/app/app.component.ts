@@ -39,5 +39,13 @@ export class AppComponent {
     console.log('click');
   }
 
-  ligthGrid() {}
+  ligthGrid() {
+    console.log('test event ligthGrid');
+  }
+  initGrid() {
+    console.log('test event initGrid');
+  }
+  randomGrid() {
+    console.log('test event randomGrid');
+  }
 }
