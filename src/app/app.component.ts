@@ -7,7 +7,7 @@ import { cellState } from './interfaces/data.interface';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public name = 'Angular ' + VERSION.major;
+  public tittle = 'Angular ' + VERSION.major;
   public dimension = 'x[5],y[7]';
   public bulbs = '6';
   private selectedFile;
@@ -38,10 +38,6 @@ export class AppComponent {
     console.log('holaaa');
     //debugger
   }
-  onFileInput($event) {
-    console.log('click');
-  }
-
   ligthGrid() {
     console.log('test event ligthGrid');
   }
@@ -60,7 +56,8 @@ export class AppComponent {
 
   onFileSelected(event) {
     const file: File = event.target.files[0];
+    console.log(file);
     const fileReader = new FileReader();
-      fileReader.readAsText(this.selectedFile, "UTF-8");
+    fileReader.readAsText(this.selectedFile, 'UTF-8');
   }
 }
