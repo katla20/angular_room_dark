@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class ApiService {
-  constructor() {}
+export class RestService {
+
+  constructor() { }
+
 }

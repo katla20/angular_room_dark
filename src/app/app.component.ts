@@ -1,6 +1,5 @@
 import { Component, VERSION } from '@angular/core';
 import { cellState } from './interfaces/data.interface';
-import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'my-app',
@@ -33,7 +32,7 @@ export class AppComponent {
     ],
   ];
 
-  constructor(private api: ApiService) {}
+  constructor() {}
 
   onLogin() {}
 
