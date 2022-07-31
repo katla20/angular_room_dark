@@ -1,6 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { cellState } from './interfaces/data.interface';
-import { ApiService } from './services/api.service';
+import { RestService } from './services/rest.service';
 
 @Component({
   selector: 'my-app',
@@ -33,7 +33,7 @@ export class AppComponent {
     ],
   ];
 
-  constructor(private api: ApiService) {}
+  constructor(public rest: RestService) {}
 
   onLogin() {}
 
@@ -41,8 +41,11 @@ export class AppComponent {
     console.log('holaaa');
     //debugger
   }
-  ligthGrid() {
-    console.log('test event ligthGrid');
+  ligthGrid(): void {
+    this.rest.getDataGrid().subscribe((resp: any) => {
+      this.map_grid = resp;
+      console.log(this.map_grid);
+    });
   }
   initGrid() {
     console.log('test event initGrid');
