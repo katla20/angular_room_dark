@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 import {
   HttpClient,
@@ -8,17 +9,17 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-const endpoint = 'http://localhost:3000/api/v1/';
+const endpoint = 'http://127.0.0.1:8000/api/grid/';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RestService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _authService: AuthService) {}
 
   getDataGrid(): Observable<any> {
     return this.http
-      .get(endpoint + 'products')
+      .get(endpoint + 'load_design')
       .pipe(map(this.extractData), catchError(this.handleError));
   }
   private handleError(error: HttpErrorResponse): any {
@@ -36,4 +37,10 @@ export class RestService {
     const body = res;
     return body || {};
   }
+
+  public getAccessToken = (): Promise<string> => {
+    return this._userManager.getUser().then((user) => {
+      return !!user && !user.expired ? user.access_token : null;
+    });
+  };
 }
