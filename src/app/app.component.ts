@@ -1,5 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { cellState } from './interfaces/data.interface';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'my-app',
@@ -32,7 +33,9 @@ export class AppComponent {
     ],
   ];
 
-  constructor() {}
+  constructor(private api: ApiService) {}
+
+  onLogin() {}
 
   ngOnInit(): void {
     console.log('holaaa');
@@ -56,8 +59,14 @@ export class AppComponent {
 
   onFileSelected(event) {
     const file: File = event.target.files[0];
-    console.log(file);
+    console.log(event);
     const fileReader = new FileReader();
     fileReader.readAsText(this.selectedFile, 'UTF-8');
+    fileReader.onload = () => {
+      let data: Array<Array<0 | 1>> = JSON.parse(
+        fileReader.result as string
+      ) as Array<Array<any>>;
+      console.log(data);
+    };
   }
 }
