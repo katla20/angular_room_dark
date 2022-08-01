@@ -35,17 +35,19 @@ export class AppComponent {
 
   constructor(public rest: RestService) {}
 
+  ngOnInit(): void {
+    console.log('holaaa');
+    this.onLogin();
+    //debugger
+  }
+
   onLogin() {
-    this.rest.authToken_().subscribe((resp: any) => {
+    console.log('login api');
+    this.rest.authToken().subscribe((resp: any) => {
       console.log(resp);
     });
   }
 
-  ngOnInit(): void {
-    console.log('holaaa');
-    this.onLogin;
-    //debugger
-  }
   ligthGrid(): void {
     this.rest.getDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;

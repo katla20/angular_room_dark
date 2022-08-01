@@ -25,7 +25,7 @@ export class RestService {
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
-  authToken_(): Observable<any> {
+  authToken(): Observable<any> {
     const apiAddress: string = `${endpoint}api/login`;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -33,6 +33,8 @@ export class RestService {
         Accept: 'application/json',
       }),
     };
+
+    console.log(user);
 
     return this.http
       .post<any[]>(apiAddress, user, httpOptions)
