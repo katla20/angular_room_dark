@@ -1,8 +1,7 @@
 import { Component, VERSION } from '@angular/core';
-import { cellState } from './interfaces/data.interface';
+import { cellState, matrix } from './interfaces/data.interface';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
-import { isArray } from 'util';
 
 @Component({
   selector: 'my-app',
@@ -13,8 +12,9 @@ export class AppComponent {
   public tittle = 'GrainChain Grid Proyect';
   public dimension: Array<[]> = [];
   public bulbs: number = 0;
-  private selectedFile;
+  private selectedFile: File;
   public readyUpload: boolean = true;
+  tempMatrixs: Array<matrix> = new Array();
   // cellState
   // bulb (true o false)
   // light (true o false)
@@ -79,34 +79,39 @@ export class AppComponent {
     });
   }
 
-  loadTxt(data: Array<Array<0 | 1>>) {
-    // this.loadMatrix(data);
+  readTxt(data: Array<Array<0 | 1>>) {
+    this.loadGrid(data);
     // this.testMatrix.testPatterns(this.tempMatrixs);
     // this.showOriginalMatrix()
   }
 
+  private loadGrid(data: Array<Array<0 | 1>>) {
+    console.log(data);
+    this.tempMatrixs = new Array();
+    // this.tempMatrixs.push(new ModelMatrix([...data], 0));
+    // let cntMatrix: number =
+    //   this.testMatrix.modelPatterns.manyPatterns.length + 1;
+    // for (let index = 0; index < cntMatrix; index++) {
+    //   this.tempMatrixs.push(new ModelMatrix([...data], index + 1));
+    // }
+    // let showMatrix = { ...new ModelMatrix([...data], cntMatrix + 1) };
+    // this.tempMatrixs.push(showMatrix);
+  }
+
   onFileSelected(event) {
-    //const file: File = event.target.files[0];
+    let flag = false;
     this.selectedFile = event.target.files[0];
     console.log(event);
     const fileReader = new FileReader();
-
-    fileReader.onload = () => {
-      let data: Array<Array<0 | 1>> = JSON.parse(
-        fileReader.result as string
-      ) as Array<Array<any>>;
-      console.log(data);
-    };
-
     fileReader.onload = () => {
       try {
         let data: Array<Array<0 | 1>> = JSON.parse(
           fileReader.result as string
         ) as Array<Array<any>>;
-        if (!!data && isArray(data) && !!data.length) {
+        if (!!data && Array.isArray(data) && !!data.length) {
           data.forEach((col) => {
             console.log(col);
-            if (!!col && isArray(col) && !!col.length) {
+            if (!!col && Array.isArray(col) && !!col.length) {
             } else {
               flag = true;
             }
@@ -117,7 +122,7 @@ export class AppComponent {
 
         if (!flag) {
           alert('Archivo Cargado Correctamente');
-          this.loadTxt(data);
+          this.readTxt(data);
         } else {
           alert('Archivo o Formato Incorrecto');
         }
