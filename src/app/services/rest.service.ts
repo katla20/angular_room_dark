@@ -18,10 +18,14 @@ export class RestService {
   constructor(private http: HttpClient, private _authService: AuthService) {}
 
   getDataGrid(): Observable<any> {
-    return this.http
-      .get(endpoint + 'test')
-      .pipe(map(this.extractData), catchError(this.handleError));
+    return this.http.get(endpoint + '/test');
   }
+
+  // getDataGrid(): Observable<any> {
+  //   return this.http
+  //     .get(endpoint + 'test')
+  //     .pipe(map(this.extractData), catchError(this.handleError));
+  // }
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
