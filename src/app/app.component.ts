@@ -2,6 +2,7 @@ import { Component, VERSION } from '@angular/core';
 import { cellState } from './interfaces/data.interface';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
+import { isArray } from 'util';
 
 @Component({
   selector: 'my-app',
@@ -10,24 +11,38 @@ import { RestService } from './services/rest.service';
 })
 export class AppComponent {
   public tittle = 'GrainChain Grid Proyect';
-  public dimension = 'x[5],y[7]';
-  public bulbs = '6';
+  public dimension: Array<[]> = [];
+  public bulbs: number = 0;
   private selectedFile;
   public readyUpload: boolean = true;
   // cellState
   // bulb (true o false)
   // light (true o false)
   // wall (true o false)
+  // public map_grid: Array<Array<cellState>> = [
+  //   [
+  //     { light: false, bulb: false, wall: false },
+  //     { light: true, bulb: false, wall: false },
+  //     { light: true, bulb: false, wall: false },
+  //     { light: true, bulb: false, wall: false },
+  //   ],
+  //   [
+  //     { light: false, bulb: false, wall: true },
+  //     { light: true, bulb: true, wall: false },
+  //     { light: false, bulb: false, wall: true },
+  //     { light: false, bulb: false, wall: true },
+  //   ],
+  // ];
   public map_grid: Array<Array<cellState>> = [
     [
       { light: false, bulb: false, wall: false },
-      { light: true, bulb: false, wall: false },
-      { light: true, bulb: false, wall: false },
-      { light: true, bulb: false, wall: false },
+      { light: false, bulb: false, wall: false },
+      { light: false, bulb: false, wall: false },
+      { light: false, bulb: false, wall: false },
     ],
     [
       { light: false, bulb: false, wall: true },
-      { light: true, bulb: true, wall: false },
+      { light: false, bulb: false, wall: false },
       { light: false, bulb: false, wall: true },
       { light: false, bulb: false, wall: true },
     ],
@@ -71,15 +86,50 @@ export class AppComponent {
   }
 
   onFileSelected(event) {
-    const file: File = event.target.files[0];
+    //const file: File = event.target.files[0];
+    this.selectedFile = event.target.files[0];
     console.log(event);
     const fileReader = new FileReader();
-    fileReader.readAsText(this.selectedFile, 'UTF-8');
+
     fileReader.onload = () => {
       let data: Array<Array<0 | 1>> = JSON.parse(
         fileReader.result as string
       ) as Array<Array<any>>;
       console.log(data);
     };
+
+    fileReader.onload = () => {
+      try {
+        let data: Array<Array<0 | 1>> = JSON.parse(
+          fileReader.result as string
+        ) as Array<Array<any>>;
+        if (!!data && isArray(data) && !!data.length) {
+          data.forEach((col) => {
+            console.log(col);
+            if (!!col && isArray(col) && !!col.length) {
+            } else {
+              flag = true;
+            }
+          });
+        } else {
+          flag = true;
+        }
+
+        if (!flag) {
+          alert('Archivo Cargado Correctamente');
+          this.loadTxt(data);
+        } else {
+          alert('Archivo o Formato Incorrecto');
+        }
+
+        console.log(data);
+      } catch (error) {
+        alert('Archivo o Formato Incorrecto');
+      }
+    };
+
+    fileReader.readAsText(this.selectedFile, 'UTF-8');
+    console.log('The contents are:');
+    console.log(this.selectedFile);
   }
 }
