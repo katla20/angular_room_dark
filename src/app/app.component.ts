@@ -1,5 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { cellState } from './interfaces/data.interface';
+import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 
 @Component({
@@ -13,13 +14,11 @@ export class AppComponent {
   public bulbs = '6';
   private selectedFile;
   public readyUpload: boolean = true;
-
+  // cellState
+  // bulb (true o false)
+  // light (true o false)
+  // wall (true o false)
   public map_grid: Array<Array<cellState>> = [
-    // cellState
-    // bulb (true o false)
-    // light (true o false)
-    // wall (true o false)
-
     [
       { light: false, bulb: false, wall: false },
       { light: true, bulb: false, wall: false },
@@ -33,32 +32,35 @@ export class AppComponent {
     ],
   ];
 
-  constructor(public rest: RestService) {}
+  constructor(public rest: RestService, private _authToken: AuthService) {}
 
   ngOnInit(): void {
     console.log('holaaa');
     this.onLogin();
-    //debugger
+    //debugger;
   }
 
   onLogin() {
-    console.log('login api');
-    this.rest.authToken().subscribe((resp: any) => {
+    this._authToken.authToken().subscribe((resp: any) => {
       console.log(resp);
     });
   }
 
-  ligthGrid(): void {
+  ligthGrid(): Array<Array<cellState>> {
+    console.log(this.map_grid);
+    return this.map_grid;
+  }
+  initGrid() {
     this.rest.getDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
       console.log(this.map_grid);
     });
   }
-  initGrid() {
-    console.log('test event initGrid');
-  }
   randomGrid() {
-    console.log('test event randomGrid');
+    this.rest.randomDataGrid().subscribe((resp: any) => {
+      this.map_grid = resp;
+      console.log(this.map_grid);
+    });
   }
 
   loadTxt(data: Array<Array<0 | 1>>) {
