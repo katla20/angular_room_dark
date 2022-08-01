@@ -36,7 +36,7 @@ export class RestService {
   }
 
   randomDataGrid(): Observable<any> {
-    const apiAddress: string = `${endpoint}api/grid/prototype`;
+    const apiAddress: string = `${endpoint}api/grid/random`;
     return this.http
       .get(apiAddress)
       .pipe(map(this.extractData), catchError(this.handleError));

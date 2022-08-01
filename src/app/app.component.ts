@@ -15,10 +15,7 @@ export class AppComponent {
   private selectedFile: File;
   public readyUpload: boolean = true;
   tempMatrixs: Array<matrix> = new Array();
-  // cellState
-  // bulb (true o false)
-  // light (true o false)
-  // wall (true o false)
+
   // public map_grid: Array<Array<cellState>> = [
   //   [
   //     { light: false, bulb: false, wall: false },
