@@ -32,10 +32,12 @@ button {
 }
 .cell-grid {
   padding: 0.5em;
+  width: 40px;
+  height: 40px;
 }
 .wall {
   background-color: rgb(30, 211, 157);
-  background: gray;
+  background: rgb(75, 72, 72);
   background-image: repeating-linear-gradient(
     30deg,
     hsla(0, 0%, 100%, 0.1),

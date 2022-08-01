@@ -5,6 +5,33 @@
         <h3>{{ tittle }}</h3>
       </li>
       <li>
+        <section *ngIf="map_grid">
+          <table
+            class="table-grid"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+            align="center"
+          >
+            <tbody>
+              <tr class="tr-grid" *ngFor="let row of map_grid" align="center">
+                <td *ngFor="let field of row">
+                  <ng-template [ngIf]="field.wall" [ngIfElse]="cell">
+                    <div class="cell-grid wall">1</div>
+                  </ng-template>
+                  <ng-template #cell>
+                    <segment
+                      [light_]="field.light"
+                      [bulb_]="field.bulb"
+                    ></segment>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </li>
+      <!-- <li>
         <table class="table-grid" border="0" cellspacing="0" cellpadding="0">
           <tbody>
             <tr class="tr-grid">
@@ -99,7 +126,7 @@
             </tr>
           </tbody>
         </table>
-      </li>
+      </li> -->
       <li>
         <div class="group-buttons">
           <button class="btn btn-success" (click)="initGrid()">grid</button>

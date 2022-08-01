@@ -2,38 +2,59 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'segment',
-  template: `<div class="quadrant" >
-              <div [class]="attr">
-                <ng-template [ngIf]="attr=='bulb'">
-                    <i class="bi bi-brightness-high"></i>
+  template: `<div class="cell-grid" [class]="property">
+                <ng-template [ngIf]="property=='bulb'">
+                  <svg-icon
+                      src="/assets/icons/bulb.svg"
+                      [svgStyle]="{
+                        'width.px': 18,
+                        'padding.px': 0,
+                        'margin.px': 0
+                      }"
+                      [stretch]="true"
+                    ></svg-icon>
                 </ng-template>
-                </div>
             </div>`,
-  styles: [`h1 { font-family: Lato; }`],
+  styles: [
+    `.cell-grid {
+      padding: 0.5em;
+      width: 40px;
+      height: 40px;
+    }
+    .bulb {
+      background-color: greenyellow;
+    }
+    .light{
+      background-color: greenyellow;
+    }
+    .dark{
+        background: darkgray;
+    }`,
+  ],
 })
 export class SegmentComponent implements OnInit {
-  @Input() withLight_: boolean = false;
+  @Input() light_: boolean = false;
   @Input() bulb_: boolean = false;
 
-  attr: string = '';
+  property: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log('holaaa=', this.withLight_, this.bulb_);
-    this.attr = this.createAttribute(this.withLight_, this.bulb_);
+    this.property = this.setProperty(this.light_, this.bulb_);
     //debugger
   }
 
-  createAttribute(_withLight: boolean, _bulb: boolean) {
-    console.log('Attribute=', _withLight, _bulb);
-
-    if (_withLight && _bulb) {
-      return 'bulb';
-    } else if (_withLight && !_bulb) {
-      return 'light';
+  setProperty(_light: boolean, _bulb: boolean) {
+    console.log('property =', _light, _bulb);
+    if (!_light && !_bulb) {
+      return 'dark';
     }
 
-    return 'dark';
+    if (_bulb) {
+      return 'bulb';
+    } else {
+      return 'light';
+    }
   }
 }

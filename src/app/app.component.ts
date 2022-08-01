@@ -23,6 +23,7 @@ export class AppComponent {
       { light: false, bulb: false, wall: false },
       { light: true, bulb: false, wall: false },
       { light: true, bulb: false, wall: false },
+      { light: true, bulb: false, wall: false },
     ],
     [
       { light: false, bulb: false, wall: true },
