@@ -30,15 +30,10 @@ export class RestService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       }),
     };
 
-    console.log(user);
-
-    return this.http
-      .post<any[]>(apiAddress, user, httpOptions)
-      .pipe(catchError(this.handleError));
+    return this.http.post<any[]>(apiAddress, user, httpOptions);
   }
 
   private handleError(error: HttpErrorResponse): any {
