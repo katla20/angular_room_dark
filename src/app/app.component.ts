@@ -9,7 +9,7 @@ import { RestService } from './services/rest.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public tittle = 'Angular ' + VERSION.major;
+  public tittle = 'GrainChain Grid Proyect';
   public dimension = 'x[5],y[7]';
   public bulbs = '6';
   private selectedFile;
