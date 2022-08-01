@@ -24,6 +24,17 @@ export class RestService {
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
+  sendDataGrid(data: any): Observable<any> {
+    const apiAddress: string = `${endpoint}api/grid/load_design`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.post<any[]>(apiAddress, data, httpOptions);
+  }
+
   randomDataGrid(): Observable<any> {
     const apiAddress: string = `${endpoint}api/grid/prototype`;
     return this.http

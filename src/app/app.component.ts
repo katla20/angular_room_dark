@@ -87,7 +87,7 @@ export class AppComponent {
 
   private loadGrid(data: Array<Array<0 | 1>>) {
     console.log(data);
-    this.tempMatrixs = new Array();
+    //this.tempMatrixs = new Array();
     // this.tempMatrixs.push(new ModelMatrix([...data], 0));
     // let cntMatrix: number =
     //   this.testMatrix.modelPatterns.manyPatterns.length + 1;
