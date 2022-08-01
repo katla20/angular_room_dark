@@ -10,6 +10,7 @@ import { from, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 const endpoint = environment.API_URL;
+const user = environment.user;
 
 @Injectable({
   providedIn: 'root',
@@ -18,14 +19,26 @@ export class RestService {
   constructor(private http: HttpClient, private _authService: AuthService) {}
 
   getDataGrid(): Observable<any> {
-    return this.http.get(endpoint + '/test');
+    const apiAddress: string = `${endpoint}api/test`;
+    return this.http
+      .get(apiAddress)
+      .pipe(map(this.extractData), catchError(this.handleError));
   }
 
-  // getDataGrid(): Observable<any> {
-  //   return this.http
-  //     .get(endpoint + 'test')
-  //     .pipe(map(this.extractData), catchError(this.handleError));
-  // }
+  authToken_(): Observable<any> {
+    const apiAddress: string = `${endpoint}api/login`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      }),
+    };
+
+    return this.http
+      .post<any[]>(apiAddress, user, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

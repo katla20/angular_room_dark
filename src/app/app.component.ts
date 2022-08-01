@@ -35,10 +35,15 @@ export class AppComponent {
 
   constructor(public rest: RestService) {}
 
-  onLogin() {}
+  onLogin() {
+    this.rest.authToken_().subscribe((resp: any) => {
+      console.log(resp);
+    });
+  }
 
   ngOnInit(): void {
     console.log('holaaa');
+    this.onLogin;
     //debugger
   }
   ligthGrid(): void {
