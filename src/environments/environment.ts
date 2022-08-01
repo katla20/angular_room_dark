@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://127.0.0.1:8000/api/grid/',
+  API_URL: 'http://127.0.0.1:8000/api/',
+  user: {
+    email: 'greenchain@info.com',
+    pass: 'password',
+  },
 };
 
 /*
