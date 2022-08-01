@@ -31,112 +31,16 @@
           </table>
         </section>
       </li>
-      <!-- <li>
-        <table class="table-grid" border="0" cellspacing="0" cellpadding="0">
-          <tbody>
-            <tr class="tr-grid">
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid hallway" data-feature="hallway">
-                <svg-icon
-                  src="/assets/icons/bulb.svg"
-                  [svgStyle]="{
-                    'width.px': 18,
-                    'padding.px': 0,
-                    'margin.px': 0
-                  }"
-                  [stretch]="true"
-                ></svg-icon>
-              </td>
-            </tr>
-            <tr>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">
-                <svg-icon
-                  src="/assets/icons/bulb.svg"
-                  [svgStyle]="{
-                    'width.px': 18,
-                    'padding.px': 0,
-                    'margin.px': 0
-                  }"
-                  [stretch]="true"
-                ></svg-icon>
-              </td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-            </tr>
-            <tr>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-            </tr>
-            <tr>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">
-                <svg-icon
-                  src="/assets/icons/bulb.svg"
-                  [svgStyle]="{
-                    'width.px': 18,
-                    'padding.px': 0,
-                    'margin.px': 0
-                  }"
-                  [stretch]="true"
-                ></svg-icon>
-              </td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">
-                <svg-icon
-                  src="/assets/icons/bulb.svg"
-                  [svgStyle]="{
-                    'width.px': 18,
-                    'padding.px': 0,
-                    'margin.px': 0
-                  }"
-                  [stretch]="true"
-                ></svg-icon>
-              </td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-            </tr>
-            <tr>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">0</td>
-              <td class="cell-grid wall" data-feature="wall">1</td>
-              <td class="cell-grid hallway" data-feature="hallway">
-                <svg-icon
-                  src="/assets/icons/bulb.svg"
-                  [svgStyle]="{
-                    'width.px': 18,
-                    'padding.px': 0,
-                    'margin.px': 0
-                  }"
-                  [stretch]="true"
-                ></svg-icon>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </li> -->
       <li>
         <div class="group-buttons">
-          <button class="btn btn-success" (click)="initGrid()">grid</button>
-          <button class="btn btn-success" (click)="randomGrid()">random</button>
+          <button class="btn btn-success" (click)="initGrid()">Grid</button>
+          <button class="btn btn-success" (click)="randomGrid()">Random</button>
           <button
             class="btn btn-success"
             type="button"
             (click)="fileInput.click()"
           >
-            <span>upload</span>
+            <span>Upload Grid</span>
             <input
               #fileInput
               type="file"

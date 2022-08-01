@@ -18,8 +18,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styles: [
     `.cell-grid {
       padding: 0.5em;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
     }
     .bulb {
       background-color: greenyellow;
