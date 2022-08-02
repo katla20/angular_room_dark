@@ -1,5 +1,10 @@
 import { Component, VERSION } from '@angular/core';
-import { cellState, matrix } from './interfaces/data.interface';
+import {
+  allData,
+  cellState,
+  matrix,
+  positions,
+} from './interfaces/data.interface';
 import { AuthService } from './services/auth.service';
 import { RestService } from './services/rest.service';
 
@@ -16,41 +21,76 @@ export class AppComponent {
   public readyUpload: boolean = true;
   tempMatrixs: Array<matrix> = new Array();
 
-  // public map_grid: Array<Array<cellState>> = [
-  //   [
-  //     { light: false, bulb: false, wall: false },
-  //     { light: true, bulb: false, wall: false },
-  //     { light: true, bulb: false, wall: false },
-  //     { light: true, bulb: false, wall: false },
-  //   ],
-  //   [
-  //     { light: false, bulb: false, wall: true },
-  //     { light: true, bulb: true, wall: false },
-  //     { light: false, bulb: false, wall: true },
-  //     { light: false, bulb: false, wall: true },
-  //   ],
-  // ];
-  public map_grid: Array<Array<cellState>> = [
-    [
-      { light: false, bulb: false, wall: false },
-      { light: false, bulb: false, wall: false },
-      { light: false, bulb: false, wall: false },
-      { light: false, bulb: false, wall: false },
-    ],
-    [
-      { light: false, bulb: false, wall: true },
-      { light: false, bulb: false, wall: false },
-      { light: false, bulb: false, wall: true },
-      { light: false, bulb: false, wall: true },
-    ],
-  ];
+  public solved_grid: Array<Array<cellState>> = [];
+
+  public map_grid: Array<Array<0 | 1>> = [];
 
   constructor(public rest: RestService, private _authToken: AuthService) {}
 
   ngOnInit(): void {
     console.log('holaaa');
-    this.onLogin();
+    this.initGrid();
+    this.refactorDataMaptoGrid(false);
+    //this.onLogin();
     //debugger;
+  }
+
+  processDataToView(matrix: matrix, showMatrix: allData) {
+    showMatrix = { data: new Array() };
+
+    for (let idxRow = 0; idxRow < matrix.cntRow; idxRow++) {
+      let row = matrix.positions.filter((pos: positions) => {
+        return pos.idxRow == idxRow;
+      });
+      // row = this.testMatrix.sort(row, ['valueRow', 'valueColumn']);
+      // let newrow: Array<cellState> = row.map((pos: positions) => {
+      //   let newshowPos: cellState = {
+      //     wall: pos.wall,
+      //     bulb: pos.bulb,
+      //     light: pos.light,
+      //   };
+      //   return newshowPos;
+      // });
+      // showMatrix.data.push(newrow);
+    }
+    this.solved_grid = [...showMatrix.data];
+    console.log(this.solved_grid);
+  }
+
+  refactorDataMaptoGrid(resolve: boolean = false): void {
+    if (!resolve) {
+      this.solved_grid = [
+        [
+          { light: false, bulb: false, wall: false },
+          { light: false, bulb: false, wall: false },
+          { light: false, bulb: false, wall: false },
+          { light: false, bulb: false, wall: false },
+        ],
+        [
+          { light: false, bulb: false, wall: true },
+          { light: false, bulb: false, wall: false },
+          { light: false, bulb: false, wall: true },
+          { light: false, bulb: false, wall: true },
+        ],
+      ];
+    }
+
+    this.solved_grid = [
+      [
+        { light: true, bulb: true, wall: false },
+        { light: true, bulb: false, wall: false },
+        { light: true, bulb: false, wall: false },
+        { light: true, bulb: false, wall: false },
+      ],
+      [
+        { light: false, bulb: false, wall: true },
+        { light: true, bulb: true, wall: false },
+        { light: false, bulb: false, wall: true },
+        { light: false, bulb: false, wall: true },
+      ],
+    ];
+
+    console.log(this.solved_grid);
   }
 
   onLogin() {
@@ -59,21 +99,27 @@ export class AppComponent {
     });
   }
 
-  ligthGrid(): Array<Array<cellState>> {
+  ligthGrid(): void {
+    this.refactorDataMaptoGrid(true);
     console.log(this.map_grid);
-    return this.map_grid;
   }
-  initGrid() {
+
+  GetDataGrid(): void {
     this.rest.getDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
-      console.log(this.map_grid);
     });
+    console.log(this.map_grid);
+  }
+
+  initGrid(): void {
+    this.refactorDataMaptoGrid(false);
+    console.log(this.map_grid);
   }
   randomGrid() {
     this.rest.randomDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
-      console.log(this.map_grid);
     });
+    console.log(this.map_grid);
   }
 
   readTxt(data: Array<Array<0 | 1>>) {

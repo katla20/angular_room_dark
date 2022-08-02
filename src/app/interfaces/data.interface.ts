@@ -44,7 +44,7 @@ export interface positions {
   valueRow: number;
   wall: boolean | 0 | 1;
   bulb: boolean;
-  withLight: boolean;
+  light: boolean;
   adjacentPos: nexPositionsMatrix;
 }
 
