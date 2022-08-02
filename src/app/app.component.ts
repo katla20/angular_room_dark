@@ -30,7 +30,6 @@ export class AppComponent {
   ngOnInit(): void {
     console.log('holaaa');
     this.initGrid();
-    this.refactorDataMaptoGrid(false);
     //this.onLogin();
     //debugger;
   }
@@ -56,43 +55,6 @@ export class AppComponent {
     this.solved_grid = [...showMatrix.data];
     console.log(this.solved_grid);
   }
-
-  refactorDataMaptoGrid(resolve: boolean = false): void {
-    if (!resolve) {
-      this.solved_grid = [
-        [
-          { light: false, bulb: false, wall: false },
-          { light: false, bulb: false, wall: false },
-          { light: false, bulb: false, wall: false },
-          { light: false, bulb: false, wall: false },
-        ],
-        [
-          { light: false, bulb: false, wall: true },
-          { light: false, bulb: false, wall: false },
-          { light: false, bulb: false, wall: true },
-          { light: false, bulb: false, wall: true },
-        ],
-      ];
-    }
-
-    this.solved_grid = [
-      [
-        { light: true, bulb: true, wall: false },
-        { light: true, bulb: false, wall: false },
-        { light: true, bulb: false, wall: false },
-        { light: true, bulb: false, wall: false },
-      ],
-      [
-        { light: false, bulb: false, wall: true },
-        { light: true, bulb: true, wall: false },
-        { light: false, bulb: false, wall: true },
-        { light: false, bulb: false, wall: true },
-      ],
-    ];
-
-    console.log(this.solved_grid);
-  }
-
   onLogin() {
     this._authToken.authToken().subscribe((resp: any) => {
       console.log(resp);
@@ -100,7 +62,7 @@ export class AppComponent {
   }
 
   ligthGrid(): void {
-    this.refactorDataMaptoGrid(true);
+    this.rest.refactorDataMaptoGrid(true);
     console.log(this.map_grid);
   }
 
@@ -112,14 +74,15 @@ export class AppComponent {
   }
 
   initGrid(): void {
-    this.refactorDataMaptoGrid(false);
+    this.solved_grid = this.rest.refactorDataMaptoGrid(false);
     console.log(this.map_grid);
   }
   randomGrid() {
+    this.solved_grid = this.rest.refactorDataMaptoGrid(false);
     this.rest.randomDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
     });
-    console.log(this.map_grid);
+    console.log('randomGrid');
   }
 
   readTxt(data: Array<Array<0 | 1>>) {

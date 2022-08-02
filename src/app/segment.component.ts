@@ -46,7 +46,7 @@ export class SegmentComponent implements OnInit {
   }
 
   setProperty(_light: boolean, _bulb: boolean) {
-    console.log('property =', _light, _bulb);
+    //console.log('property =', _light, _bulb);
     if (!_light && !_bulb) {
       return 'dark';
     }
