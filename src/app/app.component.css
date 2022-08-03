@@ -49,3 +49,7 @@ button {
 .hallway {
   background-color: greenyellow;
 }
+
+.container-fluid {
+  padding-top: 50px;
+}

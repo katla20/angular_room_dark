@@ -14,7 +14,7 @@ import { RestService } from './services/rest.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public tittle = 'GrainChain Grid Proyect';
+  public tittle = '';
   public dimension: Array<[]> = [];
   public bulbs: number = 0;
   private selectedFile: File;
@@ -61,14 +61,12 @@ export class AppComponent {
     console.log('ligthGrid');
   }
 
-  readTxt(data: Array<Array<0 | 1>>) {
-    this.loadGrid(data);
-    // this.testMatrix.testPatterns(this.tempMatrixs);
-    // this.showOriginalMatrix()
-  }
-
-  private loadGrid(data: Array<Array<0 | 1>>) {
-    console.log(data);
+  sendToProcess(data: Array<Array<0 | 1>>) {
+    this.rest.sendDataGrid(data).subscribe((resp: any) => {
+      console.log('sendDataGrid response', resp);
+      this.map_grid = resp;
+    });
+    console.log(this.map_grid);
   }
 
   onFileSelected(event) {
@@ -95,11 +93,10 @@ export class AppComponent {
 
         if (!flag) {
           alert('Archivo Cargado Correctamente');
-          this.readTxt(data);
+          this.sendToProcess(data);
         } else {
           alert('Archivo o Formato Incorrecto');
         }
-
         console.log(data);
       } catch (error) {
         alert('Archivo o Formato Incorrecto');
@@ -109,27 +106,5 @@ export class AppComponent {
     fileReader.readAsText(this.selectedFile, 'UTF-8');
     console.log('The contents are:');
     console.log(this.selectedFile);
-  }
-
-  processDataToView(matrix: matrix, showMatrix: allData) {
-    showMatrix = { data: new Array() };
-
-    for (let idxRow = 0; idxRow < matrix.cntRow; idxRow++) {
-      let row = matrix.positions.filter((pos: positions) => {
-        return pos.idxRow == idxRow;
-      });
-      // row = this.testMatrix.sort(row, ['valueRow', 'valueColumn']);
-      // let newrow: Array<cellState> = row.map((pos: positions) => {
-      //   let newshowPos: cellState = {
-      //     wall: pos.wall,
-      //     bulb: pos.bulb,
-      //     light: pos.light,
-      //   };
-      //   return newshowPos;
-      // });
-      // showMatrix.data.push(newrow);
-    }
-    this.map_grid = [...showMatrix.data];
-    console.log(this.map_grid);
   }
 }
