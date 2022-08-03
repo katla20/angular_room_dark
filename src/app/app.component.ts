@@ -19,10 +19,8 @@ export class AppComponent {
   public bulbs: number = 0;
   private selectedFile: File;
   public readyUpload: boolean = true;
-  tempMatrixs: Array<matrix> = new Array();
-
+  public tempMatrixs: Array<matrix> = new Array();
   public solved_grid: Array<Array<cellState>> = [];
-
   public map_grid: Array<Array<0 | 1>> = [];
 
   constructor(public rest: RestService, private _authToken: AuthService) {}
@@ -34,38 +32,12 @@ export class AppComponent {
     //debugger;
   }
 
-  processDataToView(matrix: matrix, showMatrix: allData) {
-    showMatrix = { data: new Array() };
-
-    for (let idxRow = 0; idxRow < matrix.cntRow; idxRow++) {
-      let row = matrix.positions.filter((pos: positions) => {
-        return pos.idxRow == idxRow;
-      });
-      // row = this.testMatrix.sort(row, ['valueRow', 'valueColumn']);
-      // let newrow: Array<cellState> = row.map((pos: positions) => {
-      //   let newshowPos: cellState = {
-      //     wall: pos.wall,
-      //     bulb: pos.bulb,
-      //     light: pos.light,
-      //   };
-      //   return newshowPos;
-      // });
-      // showMatrix.data.push(newrow);
-    }
-    this.solved_grid = [...showMatrix.data];
-    console.log(this.solved_grid);
-  }
   onLogin() {
     this._authToken.authToken().subscribe((resp: any) => {
       console.log(resp);
     });
   }
-
-  ligthGrid(): void {
-    this.rest.refactorDataMaptoGrid(true);
-    console.log(this.map_grid);
-  }
-
+  
   getDataGrid(): void {
     this.rest.getDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
@@ -74,7 +46,7 @@ export class AppComponent {
   }
 
   initGrid(): void {
-    this.solved_grid = this.rest.refactorDataMaptoGrid(false);
+    this.solved_grid = this.rest.refactorDataMaptoGrid(true);
     console.log(this.map_grid);
   }
   randomGrid() {
@@ -85,6 +57,10 @@ export class AppComponent {
     console.log('randomGrid');
   }
 
+  ligthGrid(): void {
+    console.log('ligthGrid');
+  }
+
   readTxt(data: Array<Array<0 | 1>>) {
     this.loadGrid(data);
     // this.testMatrix.testPatterns(this.tempMatrixs);
@@ -93,15 +69,6 @@ export class AppComponent {
 
   private loadGrid(data: Array<Array<0 | 1>>) {
     console.log(data);
-    //this.tempMatrixs = new Array();
-    // this.tempMatrixs.push(new ModelMatrix([...data], 0));
-    // let cntMatrix: number =
-    //   this.testMatrix.modelPatterns.manyPatterns.length + 1;
-    // for (let index = 0; index < cntMatrix; index++) {
-    //   this.tempMatrixs.push(new ModelMatrix([...data], index + 1));
-    // }
-    // let showMatrix = { ...new ModelMatrix([...data], cntMatrix + 1) };
-    // this.tempMatrixs.push(showMatrix);
   }
 
   onFileSelected(event) {
@@ -142,5 +109,27 @@ export class AppComponent {
     fileReader.readAsText(this.selectedFile, 'UTF-8');
     console.log('The contents are:');
     console.log(this.selectedFile);
+  }
+
+  processDataToView(matrix: matrix, showMatrix: allData) {
+    showMatrix = { data: new Array() };
+
+    for (let idxRow = 0; idxRow < matrix.cntRow; idxRow++) {
+      let row = matrix.positions.filter((pos: positions) => {
+        return pos.idxRow == idxRow;
+      });
+      // row = this.testMatrix.sort(row, ['valueRow', 'valueColumn']);
+      // let newrow: Array<cellState> = row.map((pos: positions) => {
+      //   let newshowPos: cellState = {
+      //     wall: pos.wall,
+      //     bulb: pos.bulb,
+      //     light: pos.light,
+      //   };
+      //   return newshowPos;
+      // });
+      // showMatrix.data.push(newrow);
+    }
+    this.solved_grid = [...showMatrix.data];
+    console.log(this.solved_grid);
   }
 }

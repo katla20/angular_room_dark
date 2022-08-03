@@ -32,6 +32,13 @@ export class RestService {
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
+  randomDataGrid(): Observable<any> {
+    const apiAddress: string = `${endpoint}api/grid/random`;
+    return this.http
+      .get(apiAddress)
+      .pipe(map(this.extractData), catchError(this.handleError));
+  }
+
   sendDataGrid(data: any): Observable<any> {
     const apiAddress: string = `${endpoint}api/grid/load_design`;
     const httpOptions = {
@@ -44,6 +51,7 @@ export class RestService {
   }
 
   refactorDataMaptoGrid(resolve: boolean = false): Array<Array<cellState>> {
+    console.log('refactorDataMaptoGrid');
     if (!resolve) {
       return [
         [
@@ -107,13 +115,6 @@ export class RestService {
         { light: false, bulb: false, wall: true },
       ],
     ];
-  }
-
-  randomDataGrid(): Observable<any> {
-    const apiAddress: string = `${endpoint}api/grid/random`;
-    return this.http
-      .get(apiAddress)
-      .pipe(map(this.extractData), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): any {
