@@ -20,13 +20,13 @@ export class AppComponent {
   private selectedFile: File;
   public readyUpload: boolean = true;
   public tempMatrixs: Array<matrix> = new Array();
-  public solved_grid: Array<Array<cellState>> = [];
-  public map_grid: Array<Array<0 | 1>> = [];
+  public map_grid: Array<Array<cellState>> = [];
+  //public map_grid: Array<Array<0 | 1>> = [];
 
   constructor(public rest: RestService, private _authToken: AuthService) {}
 
   ngOnInit(): void {
-    console.log('holaaa');
+    console.log('init');
     this.initGrid();
     //this.onLogin();
     //debugger;
@@ -37,7 +37,7 @@ export class AppComponent {
       console.log(resp);
     });
   }
-  
+
   getDataGrid(): void {
     this.rest.getDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
@@ -46,11 +46,11 @@ export class AppComponent {
   }
 
   initGrid(): void {
-    this.solved_grid = this.rest.refactorDataMaptoGrid(true);
+    this.map_grid = this.rest.refactorDataMaptoGrid(true);
     console.log(this.map_grid);
   }
   randomGrid() {
-    this.solved_grid = this.rest.refactorDataMaptoGrid(false);
+    this.map_grid = this.rest.refactorDataMaptoGrid(false);
     this.rest.randomDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
     });
@@ -129,7 +129,7 @@ export class AppComponent {
       // });
       // showMatrix.data.push(newrow);
     }
-    this.solved_grid = [...showMatrix.data];
-    console.log(this.solved_grid);
+    this.map_grid = [...showMatrix.data];
+    console.log(this.map_grid);
   }
 }

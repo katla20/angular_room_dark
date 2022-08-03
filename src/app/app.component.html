@@ -5,7 +5,7 @@
         <h3>{{ tittle }}</h3>
       </li>
       <li>
-        <section *ngIf="solved_grid">
+        <section *ngIf="map_grid">
           <table
             class="table-grid"
             cellspacing="0"
@@ -14,11 +14,7 @@
             align="center"
           >
             <tbody>
-              <tr
-                class="tr-grid"
-                *ngFor="let row of solved_grid"
-                align="center"
-              >
+              <tr class="tr-grid" *ngFor="let row of map_grid" align="center">
                 <td *ngFor="let field of row">
                   <ng-template [ngIf]="field.wall" [ngIfElse]="cell">
                     <div class="cell-grid wall">1</div>
