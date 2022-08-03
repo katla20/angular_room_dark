@@ -66,7 +66,7 @@ export class AppComponent {
     console.log(this.map_grid);
   }
 
-  GetDataGrid(): void {
+  getDataGrid(): void {
     this.rest.getDataGrid().subscribe((resp: any) => {
       this.map_grid = resp;
     });
