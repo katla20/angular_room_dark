@@ -25,14 +25,14 @@ export class RestService {
 
   constructor(private http: HttpClient, private _authService: AuthService) {}
 
-  getDataGrid(): Observable<any> {
+  getGrid(): Observable<any> {
     const apiAddress: string = `${endpoint}api/grid/prototype`;
     return this.http
       .get(apiAddress)
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
-  randomDataGrid(): Observable<any> {
+  randomGrid(): Observable<any> {
     const apiAddress: string = `${endpoint}api/grid/random`;
     return this.http
       .get(apiAddress)
@@ -50,7 +50,7 @@ export class RestService {
     return this.http.post<any[]>(apiAddress, data, httpOptions);
   }
 
-  refactorDataMaptoGrid(resolve: boolean = false): Array<Array<cellState>> {
+  MapGrid(resolve: boolean = false): Array<Array<cellState>> {
     console.log('refactorDataMaptoGrid');
     if (!resolve) {
       return [
