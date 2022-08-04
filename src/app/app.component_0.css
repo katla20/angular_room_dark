@@ -1,0 +1,55 @@
+p {
+  font-family: Lato;
+}
+li {
+  list-style-type: none;
+}
+button {
+  margin: 0.5em;
+}
+.group-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.table-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.details-grid {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: springgreen;
+}
+.details-items-grid {
+  margin: auto;
+  text-align: center;
+  list-style: none;
+}
+.cell-grid {
+  padding: 0.5em;
+  width: 45px;
+  height: 45px;
+}
+.wall {
+  background-color: rgb(30, 211, 157);
+  background: rgb(75, 72, 72);
+  background-image: repeating-linear-gradient(
+    30deg,
+    hsla(0, 0%, 100%, 0.1),
+    hsla(0, 0%, 100%, 0.1) 15px,
+    transparent 0,
+    transparent 30px
+  );
+}
+.light {
+  background-color: greenyellow;
+}
+
+.container-fluid {
+  padding-top: 50px;
+}

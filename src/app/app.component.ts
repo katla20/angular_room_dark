@@ -39,31 +39,35 @@ export class AppComponent {
   }
 
   getDataGrid(): void {
-    this.rest.getDataGrid().subscribe((resp: any) => {
+    this.rest.getGrid().subscribe((resp: any) => {
       this.map_grid = resp;
     });
     console.log(this.map_grid);
   }
 
   initGrid(): void {
-    this.map_grid = this.rest.refactorDataMaptoGrid(true);
+    this.map_grid = this.rest.mapGrid(true);
     console.log(this.map_grid);
   }
   randomGrid() {
-    this.map_grid = this.rest.refactorDataMaptoGrid(false);
-    this.rest.randomDataGrid().subscribe((resp: any) => {
+    this.map_grid = this.rest.mapGrid(false);
+    this.rest.randomGrid().subscribe((resp: any) => {
       this.map_grid = resp;
     });
     console.log('randomGrid');
   }
 
   ligthGrid(): void {
+    //solution
+    this.rest.randomGrid().subscribe((resp: any) => {
+      this.map_grid = resp;
+    });
     console.log('ligthGrid');
   }
 
   sendToProcess(data: Array<Array<0 | 1>>) {
-    this.rest.sendDataGrid(data).subscribe((resp: any) => {
-      console.log('sendDataGrid response', resp);
+    this.rest.sendDataMatrix(data).subscribe((resp: any) => {
+      console.log('grid response', resp);
       this.map_grid = resp;
     });
     console.log(this.map_grid);

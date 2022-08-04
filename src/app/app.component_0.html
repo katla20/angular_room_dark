@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <ul>
+      <li>
+        <h3>{{ tittle }}</h3>
+      </li>
+      <li>
+        <section *ngIf="map_grid">
+          <table
+            class="table-grid"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+            align="center"
+          >
+            <tbody>
+              <tr class="tr-grid" *ngFor="let row of map_grid" align="center">
+                <td *ngFor="let field of row">
+                  <ng-template [ngIf]="field.wall" [ngIfElse]="cell">
+                    <div class="cell-grid wall">1</div>
+                  </ng-template>
+                  <ng-template #cell>
+                    <segment
+                      [light_]="field.light"
+                      [bulb_]="field.bulb"
+                    ></segment>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </li>
+      <li>
+        <div class="group-buttons">
+          <button class="btn btn-success" (click)="initGrid()">Grid</button>
+          <button class="btn btn-success" (click)="randomGrid()">Random</button>
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="fileInput.click()"
+          >
+            <span>Upload Grid</span>
+            <input
+              #fileInput
+              type="file"
+              (change)="onFileSelected($event)"
+              style="display:none;"
+            />
+          </button>
+          <button class="btn btn-success" (click)="ligthGrid()">ligth</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <pre> 
+  <code>
+     {{ map_grid | json }}
+  </code>
+</pre>
+</div>

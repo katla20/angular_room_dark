@@ -5,6 +5,7 @@ import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
+  HttpParams,
 } from '@angular/common/http';
 import {
   allData,
@@ -26,7 +27,13 @@ export class RestService {
   constructor(private http: HttpClient, private _authService: AuthService) {}
 
   getGrid(): Observable<any> {
+    const httpOptions = {
+      headers: { 'Content-Type': 'application/json' },
+      params: { resolve: false },
+    };
     const apiAddress: string = `${endpoint}api/grid/prototype`;
+
+    this.http.get('url', httpOptions);
     return this.http
       .get(apiAddress)
       .pipe(map(this.extractData), catchError(this.handleError));
@@ -39,19 +46,18 @@ export class RestService {
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
-  sendDataGrid(data: any): Observable<any> {
+  sendDataMatrix(data: any): Observable<any> {
     const apiAddress: string = `${endpoint}api/grid/load_design`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     };
-
     return this.http.post<any[]>(apiAddress, data, httpOptions);
   }
 
-  MapGrid(resolve: boolean = false): Array<Array<cellState>> {
-    console.log('refactorDataMaptoGrid');
+  mapGrid(resolve: boolean = false): Array<Array<cellState>> {
+    console.log('static data');
     if (!resolve) {
       return [
         [
