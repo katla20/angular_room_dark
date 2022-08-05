@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import {
   allData,
-  cellState,
+  properties,
   matrix,
   positions,
 } from './interfaces/data.interface';
@@ -20,8 +20,9 @@ export class AppComponent {
   private selectedFile: File;
   public readyUpload: boolean = true;
   //public tempMatrixs: Array<matrix> = new Array();
-  public mapGrid: Array<Array<cellState>> = new Array();
+  public mapGrid: Array<Array<properties>> = new Array();
   public tempMatrix: Array<Array<0 | 1>> = new Array();
+  public tempMatrixP: Array<Array<0 | 1>> = new Array();
 
   constructor(public rest: RestService, private _authToken: AuthService) {}
 
@@ -41,25 +42,30 @@ export class AppComponent {
   getDataGrid(): void {
     this.rest.getGrid().subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
+      this.tempMatrix = resp.data.matrix;
     });
   }
 
   randomDataGrid() {
     this.rest.randomGrid().subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
+      this.tempMatrix = resp.data.matrix;
     });
   }
 
   ligthGrid(): void {
     //solution
-    this.rest.resolveGrid().subscribe((resp: any) => {
+    this.tempMatrixP = this.tempMatrix;
+    this.rest.resolveGrid(this.tempMatrixP).subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
+      this.tempMatrix = resp.data.matrix;
     });
   }
 
   sendToProcess(data: Array<Array<0 | 1>>) {
     this.rest.sendDataMatrix(data).subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
+      this.tempMatrix = resp.data.matrix;
     });
   }
 

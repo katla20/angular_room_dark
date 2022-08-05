@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import {
   allData,
-  cellState,
+  properties,
   matrix,
   positions,
 } from '../interfaces/data.interface';
@@ -22,7 +22,7 @@ const endpoint = environment.API_URL;
   providedIn: 'root',
 })
 export class RestService {
-  public solved_grid: Array<Array<cellState>> = [];
+  public solved_grid: Array<Array<properties>> = new Array();
 
   constructor(private http: HttpClient, private _authService: AuthService) {}
 
@@ -46,15 +46,21 @@ export class RestService {
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
-  resolveGrid(): Observable<any> {
+  resolveGrid(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
     const apiAddress: string = `${endpoint}api/grid/light_up`;
+
+    return this.http.post<any[]>(apiAddress, data, httpOptions);
     return this.http
       .get(apiAddress)
       .pipe(map(this.extractData), catchError(this.handleError));
   }
 
   sendDataMatrix(data: any): Observable<any> {
-    console.log('service', data);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

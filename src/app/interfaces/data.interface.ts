@@ -48,14 +48,14 @@ export interface positions {
   adjacentPos: nexPositionsMatrix;
 }
 
-export interface cellState {
-  wall: boolean | 0 | 1;
-  bulb: boolean;
-  light: boolean;
+export interface properties {
+  state: string;
+  positionx: number;
+  positiony: number;
 }
 
 export interface allData {
-  data: Array<Array<cellState>>;
+  data: Array<Array<properties>>;
 }
 
 export interface nexPositionsMatrix {
