@@ -9,9 +9,7 @@
           <table class="table-grid" align="center">
             <tbody>
               <tr class="tr-grid" *ngFor="let row of mapGrid" align="center">
-                <!-- <pre><<<<<<<code>{{ row | json }}</code>>>>>>>></pre> -->
                 <td *ngFor="let field of row">
-                  <!-- <pre><<<<<<<<code>{{ field['state'] | json }}</code>>>>>>>>></pre> -->
                   <ng-template
                     [ngIf]="field['state'] == 'wall'"
                     [ngIfElse]="cell"

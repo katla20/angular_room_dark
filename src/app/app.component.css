@@ -28,6 +28,7 @@ table.table-grid td {
   border-width: 1px;
   border-style: dashed;
   border-color: gray;
+  padding-top: 0px;
 }
 
 .details-grid {
@@ -42,8 +43,10 @@ table.table-grid td {
   list-style: none;
 }
 .cell-grid {
-  width: 45px;
-  height: 45px;
+  padding-top: 6px;
+  width: 49px;
+  height: 49px;
+  margin: 0px;
 }
 .wall {
   background-color: rgb(30, 211, 157);
