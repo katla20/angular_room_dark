@@ -14,11 +14,22 @@ button {
   margin-top: 2em;
 }
 
-.table-grid {
+table.table-grid {
+  border-width: 0px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: gray;
+  border-collapse: separate;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+table.table-grid td {
+  border-width: 1px;
+  border-style: dashed;
+  border-color: gray;
+}
+
 .details-grid {
   display: flex;
   justify-content: left;
@@ -31,7 +42,6 @@ button {
   list-style: none;
 }
 .cell-grid {
-  padding: 0.5em;
   width: 45px;
   height: 45px;
 }

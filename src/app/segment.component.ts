@@ -17,7 +17,6 @@ import { Component, Input, OnInit } from '@angular/core';
             </div>`,
   styles: [
     `.cell-grid {
-      padding: 0.5em;
       width: 45px;
       height: 45px;
     }
@@ -26,7 +25,6 @@ import { Component, Input, OnInit } from '@angular/core';
     }
     .light{
       background-color: greenyellow;
-      border-color:grey;
     }
     .dark{
         background: darkgray;
