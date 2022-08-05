@@ -54,12 +54,13 @@ export class RestService {
   }
 
   sendDataMatrix(data: any): Observable<any> {
-    const apiAddress: string = `${endpoint}api/grid/load_design`;
+    console.log('service', data);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     };
+    const apiAddress: string = `${endpoint}api/grid/load_txt`;
     return this.http.post<any[]>(apiAddress, data, httpOptions);
   }
 

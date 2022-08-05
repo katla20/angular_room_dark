@@ -60,8 +60,9 @@ export class AppComponent {
   }
 
   sendToProcess(data: Array<Array<0 | 1>>) {
+    console.log('sendToProcess', data);
     this.rest.sendDataMatrix(data).subscribe((resp: any) => {
-      console.log('grid response', resp);
+      console.log('sendToProcess', resp.data.grid);
       this.mapGrid = resp.data.grid;
     });
   }
@@ -94,7 +95,7 @@ export class AppComponent {
         } else {
           alert('Archivo o Formato Incorrecto');
         }
-        console.log(data);
+        //console.log(data);
       } catch (error) {
         alert('Archivo o Formato Incorrecto');
       }
