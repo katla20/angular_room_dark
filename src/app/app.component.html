@@ -15,15 +15,17 @@
           >
             <tbody>
               <tr class="tr-grid" *ngFor="let row of mapGrid" align="center">
+                <!-- <pre><<<<<<<code>{{ row | json }}</code>>>>>>>></pre> -->
                 <td *ngFor="let field of row">
-                  <ng-template [ngIf]="field" [ngIfElse]="cell">
+                  <!-- <pre><<<<<<<<code>{{ field['state'] | json }}</code>>>>>>>>></pre> -->
+                  <ng-template
+                    [ngIf]="field['state'] == 'wall'"
+                    [ngIfElse]="cell"
+                  >
                     <div class="cell-grid wall">1</div>
                   </ng-template>
                   <ng-template #cell>
-                    <!-- <segment
-                      [light_]="field.light"
-                      [bulb_]="field.bulb"
-                    ></segment> -->
+                    <segment [state_]="field['state']"></segment>
                   </ng-template>
                 </td>
               </tr>

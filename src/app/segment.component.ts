@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'segment',
-  template: `<div class="cell-grid" [class]="property">
-                <ng-template [ngIf]="property=='bulb'">
+  template: `<div class="cell-grid" [class]="state_">
+                <ng-template [ngIf]="state_=='bulb'">
                   <svg-icon
                       src="/assets/icons/bulb.svg"
                       [svgStyle]="{
@@ -26,6 +26,7 @@ import { Component, Input, OnInit } from '@angular/core';
     }
     .light{
       background-color: greenyellow;
+      border-color:grey;
     }
     .dark{
         background: darkgray;
@@ -33,28 +34,11 @@ import { Component, Input, OnInit } from '@angular/core';
   ],
 })
 export class SegmentComponent implements OnInit {
-  @Input() light_: boolean = false;
-  @Input() bulb_: boolean = false;
-
-  property: string = '';
+  @Input() state_: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
-    this.property = this.setProperty(this.light_, this.bulb_);
     //debugger
-  }
-
-  setProperty(_light: boolean, _bulb: boolean) {
-    //console.log('property =', _light, _bulb);
-    if (!_light && !_bulb) {
-      return 'dark';
-    }
-
-    if (_bulb) {
-      return 'bulb';
-    } else {
-      return 'light';
-    }
   }
 }
