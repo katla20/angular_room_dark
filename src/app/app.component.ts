@@ -27,9 +27,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.getDataGrid();
-    console.log(this.mapGrid);
     //this.onLogin();
-    const newuniq = [...new Set(this.mapGrid.map((item) => item))];
+    // const newuniq = [...new Set(this.mapGrid.map((item) => item))];
     //debugger;
   }
 
@@ -63,7 +62,7 @@ export class AppComponent {
   sendToProcess(data: Array<Array<0 | 1>>) {
     this.rest.sendDataMatrix(data).subscribe((resp: any) => {
       console.log('grid response', resp);
-      this.mapGrid = resp;
+      this.mapGrid = resp.data.grid;
     });
   }
 
@@ -79,7 +78,7 @@ export class AppComponent {
         ) as Array<Array<any>>;
         if (!!data && Array.isArray(data) && !!data.length) {
           data.forEach((col) => {
-            console.log(col);
+            //console.log(col);
             if (!!col && Array.isArray(col) && !!col.length) {
             } else {
               flag = true;
