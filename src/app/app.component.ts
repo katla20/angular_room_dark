@@ -48,7 +48,6 @@ export class AppComponent {
     this.rest.randomGrid().subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
     });
-    console.log('randomGrid');
   }
 
   ligthGrid(): void {
@@ -56,13 +55,10 @@ export class AppComponent {
     this.rest.resolveGrid().subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
     });
-    console.log('ligthGrid');
   }
 
   sendToProcess(data: Array<Array<0 | 1>>) {
-    console.log('sendToProcess', data);
     this.rest.sendDataMatrix(data).subscribe((resp: any) => {
-      console.log('sendToProcess', resp.data.grid);
       this.mapGrid = resp.data.grid;
     });
   }
