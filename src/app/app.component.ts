@@ -26,9 +26,10 @@ export class AppComponent {
   constructor(public rest: RestService, private _authToken: AuthService) {}
 
   ngOnInit(): void {
-    console.log('init');
     this.getDataGrid();
+    console.log(this.mapGrid);
     //this.onLogin();
+    const newuniq = [...new Set(this.mapGrid.map((item) => item))];
     //debugger;
   }
 
@@ -42,7 +43,6 @@ export class AppComponent {
     this.rest.getGrid().subscribe((resp: any) => {
       this.mapGrid = resp.data.grid;
     });
-    console.log(this.mapGrid);
   }
 
   randomDataGrid() {
