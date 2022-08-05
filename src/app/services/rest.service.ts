@@ -29,7 +29,7 @@ export class RestService {
   getGrid(): Observable<any> {
     const httpOptions = {
       headers: { 'Content-Type': 'application/json' },
-      params: { resolve: false },
+      //params: { resolve: false },
     };
     const apiAddress: string = `${endpoint}api/grid/prototype`;
 
@@ -41,6 +41,13 @@ export class RestService {
 
   randomGrid(): Observable<any> {
     const apiAddress: string = `${endpoint}api/grid/random`;
+    return this.http
+      .get(apiAddress)
+      .pipe(map(this.extractData), catchError(this.handleError));
+  }
+
+  resolveGrid(): Observable<any> {
+    const apiAddress: string = `${endpoint}api/grid/light_up`;
     return this.http
       .get(apiAddress)
       .pipe(map(this.extractData), catchError(this.handleError));

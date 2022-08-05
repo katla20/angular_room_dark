@@ -19,15 +19,15 @@ export class AppComponent {
   public bulbs: number = 0;
   private selectedFile: File;
   public readyUpload: boolean = true;
-  public tempMatrixs: Array<matrix> = new Array();
-  public map_grid: Array<Array<cellState>> = [];
-  //public map_grid: Array<Array<0 | 1>> = [];
+  //public tempMatrixs: Array<matrix> = new Array();
+  public mapGrid: Array<Array<cellState>> = new Array();
+  public tempMatrix: Array<Array<0 | 1>> = new Array();
 
   constructor(public rest: RestService, private _authToken: AuthService) {}
 
   ngOnInit(): void {
     console.log('init');
-    this.initGrid();
+    this.getDataGrid();
     //this.onLogin();
     //debugger;
   }
@@ -40,27 +40,22 @@ export class AppComponent {
 
   getDataGrid(): void {
     this.rest.getGrid().subscribe((resp: any) => {
-      this.map_grid = resp;
+      this.mapGrid = resp.data.grid;
     });
-    console.log(this.map_grid);
+    console.log(this.mapGrid);
   }
 
-  initGrid(): void {
-    this.map_grid = this.rest.mapGrid(true);
-    console.log(this.map_grid);
-  }
-  randomGrid() {
-    this.map_grid = this.rest.mapGrid(false);
+  randomDataGrid() {
     this.rest.randomGrid().subscribe((resp: any) => {
-      this.map_grid = resp;
+      this.mapGrid = resp.data.grid;
     });
     console.log('randomGrid');
   }
 
   ligthGrid(): void {
     //solution
-    this.rest.randomGrid().subscribe((resp: any) => {
-      this.map_grid = resp;
+    this.rest.resolveGrid().subscribe((resp: any) => {
+      this.mapGrid = resp.data.grid;
     });
     console.log('ligthGrid');
   }
@@ -68,12 +63,11 @@ export class AppComponent {
   sendToProcess(data: Array<Array<0 | 1>>) {
     this.rest.sendDataMatrix(data).subscribe((resp: any) => {
       console.log('grid response', resp);
-      this.map_grid = resp;
+      this.mapGrid = resp;
     });
-    console.log(this.map_grid);
   }
 
-  onFileSelected(event) {
+  onFileSelected(event: any) {
     let flag = false;
     this.selectedFile = event.target.files[0];
     console.log(event);
